@@ -78,10 +78,13 @@ export const Footer = ({ restaurant }: FooterProps) => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-border text-center">
+        <div className="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-body text-sm text-muted-foreground">
             © {new Date().getFullYear()} {restaurant.name}. All rights reserved.
           </p>
+          <a href="/auth" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+            管理后台
+          </a>
         </div>
       </div>
     </footer>
