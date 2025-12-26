@@ -8,6 +8,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import Setup from "./pages/Setup";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminIndex from "./pages/admin/AdminIndex";
 import CategoriesPage from "./pages/admin/CategoriesPage";
@@ -27,6 +28,7 @@ const App = () => (
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/setup" element={<Setup />} />
               <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminIndex />} />
                 <Route path="categories" element={<CategoriesPage />} />
