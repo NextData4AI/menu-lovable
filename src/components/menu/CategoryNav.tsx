@@ -1,8 +1,8 @@
-import { Category } from '@/data/mockData';
+import { PublicCategory } from '@/hooks/usePublicMenu';
 import { cn } from '@/lib/utils';
 
 interface CategoryNavProps {
-  categories: Category[];
+  categories: PublicCategory[];
   activeCategory: string;
   onCategoryClick: (categoryId: string) => void;
 }

@@ -1,9 +1,9 @@
-import { Dish } from '@/data/mockData';
+import { PublicDish } from '@/hooks/usePublicMenu';
 import { useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 interface DishCardProps {
-  dish: Dish;
+  dish: PublicDish;
   index: number;
 }
 
@@ -27,6 +27,7 @@ export const DishCard = ({ dish, index }: DishCardProps) => {
           <img
             src={dish.image}
             alt={dish.title}
+            loading="lazy"
             onLoad={() => setImageLoaded(true)}
             className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 ${
               imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -46,9 +47,11 @@ export const DishCard = ({ dish, index }: DishCardProps) => {
           {dish.title}
         </h3>
         
-        <p className="font-body text-sm text-muted-foreground line-clamp-2 leading-relaxed">
-          {dish.description}
-        </p>
+        {dish.description && (
+          <p className="font-body text-sm text-muted-foreground line-clamp-2 leading-relaxed">
+            {dish.description}
+          </p>
+        )}
       </article>
 
       {/* Detail Dialog */}
@@ -71,9 +74,11 @@ export const DishCard = ({ dish, index }: DishCardProps) => {
               </span>
             </div>
             
-            <p className="font-body text-muted-foreground leading-relaxed text-lg">
-              {dish.description}
-            </p>
+            {dish.description && (
+              <p className="font-body text-muted-foreground leading-relaxed text-lg">
+                {dish.description}
+              </p>
+            )}
           </div>
         </DialogContent>
       </Dialog>
