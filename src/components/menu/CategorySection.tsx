@@ -1,12 +1,14 @@
-import { Category } from '@/data/mockData';
+import { PublicCategory, PublicDish } from '@/hooks/usePublicMenu';
 import { DishCard } from './DishCard';
 
 interface CategorySectionProps {
-  category: Category;
+  category: PublicCategory & { dishes: PublicDish[] };
 }
 
 export const CategorySection = ({ category }: CategorySectionProps) => {
-  const activeDishes = category.dishes.filter(dish => dish.status === 'ACTIVE');
+  if (category.dishes.length === 0) {
+    return null;
+  }
 
   return (
     <section id={`category-${category.id}`} className="py-16 md:py-24">
@@ -29,7 +31,7 @@ export const CategorySection = ({ category }: CategorySectionProps) => {
 
         {/* Dishes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activeDishes.map((dish, index) => (
+          {category.dishes.map((dish, index) => (
             <DishCard key={dish.id} dish={dish} index={index} />
           ))}
         </div>

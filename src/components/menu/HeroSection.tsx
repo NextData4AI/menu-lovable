@@ -1,8 +1,8 @@
-import { Restaurant } from '@/data/mockData';
+import { PublicRestaurant } from '@/hooks/usePublicMenu';
 import { ChevronDown } from 'lucide-react';
 
 interface HeroSectionProps {
-  restaurant: Restaurant;
+  restaurant: PublicRestaurant;
 }
 
 export const HeroSection = ({ restaurant }: HeroSectionProps) => {
@@ -10,12 +10,14 @@ export const HeroSection = ({ restaurant }: HeroSectionProps) => {
     document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const defaultBanner = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80';
+
   return (
     <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${restaurant.bannerImage})` }}
+        style={{ backgroundImage: `url(${restaurant.banner_image || defaultBanner})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
       </div>
@@ -35,12 +37,14 @@ export const HeroSection = ({ restaurant }: HeroSectionProps) => {
           {restaurant.name}
         </h1>
         
-        <p 
-          className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed opacity-0 animate-fade-in"
-          style={{ animationDelay: '0.6s' }}
-        >
-          {restaurant.description}
-        </p>
+        {restaurant.description && (
+          <p 
+            className="font-body text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed opacity-0 animate-fade-in"
+            style={{ animationDelay: '0.6s' }}
+          >
+            {restaurant.description}
+          </p>
+        )}
 
         <button
           onClick={scrollToMenu}
